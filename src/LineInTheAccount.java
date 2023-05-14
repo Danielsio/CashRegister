@@ -7,9 +7,9 @@
 public class LineInTheAccount {
 
     /*Declaration of instance variables*/
-    private Item item;
-    private int amount;
-    private double total;
+    private final Item item;
+    private final int amount;
+    private final double total;
 
     /*
      Construct a new LineInTheAccount.

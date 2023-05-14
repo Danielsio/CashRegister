@@ -12,7 +12,7 @@ public class CashRegister {
     /*Declaration of instance variables*/
     private static double cashRegisterAmount;
     private static double totalCustomersPayment;
-    private ArrayList<LineInTheAccount> items = new ArrayList<LineInTheAccount>();
+    private ArrayList<LineInTheAccount> items = new ArrayList<>();
 
     /*
      Construct a new CashRegister (default constructor)

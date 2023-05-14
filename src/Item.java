@@ -7,8 +7,8 @@
 public class Item {
 
     /*Declaration of instance variables*/
-    private String itemName;
-    private double price;
+    private final String itemName;
+    private final double price;
 
 
 
