@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class CashRegister {
     /*Declaration of instance variables*/
-    private static double cashRegisterAmount;
-    private static double totalCustomersPayment;
+    private double cashRegisterAmount;
+    private double totalCustomersPayment;
     private ArrayList<LineInTheAccount> items = new ArrayList<>();
 
     /*
@@ -70,7 +70,7 @@ public class CashRegister {
         double amountToPay = totalAmountPurchase();
         cashRegisterAmount += amountToPay;
         totalCustomersPayment += amountToPay;
-        items = new ArrayList<LineInTheAccount>();
+        items = new ArrayList<>();
         return (payment - amountToPay);
     }
 
@@ -87,10 +87,11 @@ public class CashRegister {
     /*The method prints a message asking if we would be interested
     in updating an initial amount at the cash register.*/
     private void hasInitialAmount() {
-        System.out.println("Hi, before we start using the cash register, \n"
-                + "would you be interested in putting an initial amount into it?\n" +
-                "Select:\n" +
-                "1: Yes, 0: No");
+        System.out.println("""
+                Hi, before we start using the cash register,\s
+                would you be interested in putting an initial amount into it?
+                Select:
+                1: Yes, 0: No""");
     }
 
     /*The method asks the user to enter an initial amount into the cash register.*/
@@ -129,36 +130,19 @@ public class CashRegister {
     The method returns true when the customer wants to purchase another product, otherwise it returns false.*/
     private boolean choosingProducts(CashRegister safe, int choice, int amount) {
         switch (choice) {
-            case 1:
-                safe.addItem(new Item("bread", 7.50), amount);
-                break;
-            case 2:
-                safe.addItem(new Item("milk", 5.00), amount);
-                break;
-            case 3:
-                safe.addItem(new Item("honey", 24.90), amount);
-                break;
-            case 4:
-                safe.addItem(new Item("eggs", 29.90), amount);
-                break;
-            case 5:
-                safe.addItem(new Item("cheese", 22.50), amount);
-                break;
-            case 6:
-                safe.addItem(new Item("shampoo", 15.00), amount);
-                break;
-            case 7:
-                safe.addItem(new Item("cucumber", 1.20), amount);
-                break;
-            case 8:
-                safe.addItem(new Item("tomato", 1.50), amount);
-                break;
-            case 9:
-                safe.addItem(new Item("canola oil", 11.5), amount);
-                break;
-            case 0:
+            case 1 -> safe.addItem(new Item("bread", 7.50), amount);
+            case 2 -> safe.addItem(new Item("milk", 5.00), amount);
+            case 3 -> safe.addItem(new Item("honey", 24.90), amount);
+            case 4 -> safe.addItem(new Item("eggs", 29.90), amount);
+            case 5 -> safe.addItem(new Item("cheese", 22.50), amount);
+            case 6 -> safe.addItem(new Item("shampoo", 15.00), amount);
+            case 7 -> safe.addItem(new Item("cucumber", 1.20), amount);
+            case 8 -> safe.addItem(new Item("tomato", 1.50), amount);
+            case 9 -> safe.addItem(new Item("canola oil", 11.5), amount);
+            case 0 -> {
                 System.out.println("You chose to finish the purchase\n");
                 return false;
+            }
         }
         return true;
     }
@@ -191,19 +175,17 @@ public class CashRegister {
     /*The method prints a message asking if there is
     another customer interested in purchasing products.*/
     private void askIfThereIsCustomer() {
-        System.out.println("Please note if there is one more customer" +
-                " waiting to pay for his groceries:\n" +
-                "1: Yes\n" +
-                "0: No");
+        System.out.println("""
+                Please note if there is one more customer waiting to pay for his groceries:
+                1: Yes
+                0: No""");
     }
 
     /*The method receives a variable that represents whether
     there is another customer interested in purchasing products
     and returns true if so and false otherwise.*/
     private boolean hasAnotherCustomer(int hasCustomer) {
-        if (hasCustomer == 1)
-            return true;
-        return false;
+        return hasCustomer == 1;
     }
 
     /*The method receives a parameter of type cashRegister
@@ -211,9 +193,12 @@ public class CashRegister {
     The method also prints the current amount in the cash
     register and the amount of all purchases by all customers.*/
     private void closeCashRegisterMessage(CashRegister safe) {
-        System.out.printf("The cash register is closed!\n\n" +
-                        "The amount in the cash register is: %.2f\n" +
-                        "The cumulative amount of all customers' purchases is: %.2f\n",
+        System.out.printf("""
+                        The cash register is closed!
+
+                        The amount in the cash register is: %.2f
+                        The cumulative amount of all customers' purchases is: %.2f
+                        """,
                 safe.getCashRegisterAmount(), safe.getTotalCustomersPayment());
     }
 
@@ -226,7 +211,7 @@ public class CashRegister {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         CashRegister safe = new CashRegister();
-        int productChoice, hasCustomer, amount = 0;
+        int productChoice, hasCustomer, amount;
         double payment;
 
         safe.hasInitialAmount();
